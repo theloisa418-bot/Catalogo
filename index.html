@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cardápio Doce Afeto</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fff5f7;
+  margin: 0;
+  padding: 20px;
+}
+h1 {
+  text-align: center;
+  color: #c2185b;
+}
+.category {
+  margin-top: 30px;
+}
+.item {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+button {
+  background: #c2185b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+#cart {
+  margin-top: 30px;
+  background: #ffe4ec;
+  padding: 15px;
+  border-radius: 12px;
+}
+#whatsapp {
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+  background: #25d366;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🍰 Cardápio Doce Afeto</h1>
+
+<div class="category">
+<h2>Bolos</h2>
+<div class="item">
+  <span>Bolo Red Velvet</span>
+  <button onclick="addItem('Bolo Red Velvet')">Adicionar</button>
+</div>
+<div class="item">
+  <span>Bolo Ninho com Nutella</span>
+  <button onclick="addItem('Bolo Ninho com Nutella')">Adicionar</button>
+</div>
+</div>
+
+<div class="category">
+<h2>Rocamboles</h2>
+<div class="item">
+  <span>Rocambole de Ninho</span>
+  <button onclick="addItem('Rocambole de Ninho')">Adicionar</button>
+</div>
+</div>
+
+<div class="category">
+<h2>Doces</h2>
+<div class="item">
+  <span>Brigadeiro Gourmet</span>
+  <button onclick="addItem('Brigadeiro Gourmet')">Adicionar</button>
+</div>
+</div>
+
+<div id="cart">
+<h3>🛒 Seu pedido:</h3>
+<ul id="list"></ul>
+</div>
+
+<a id="whatsapp" href="#" target="_blank">📲 Enviar pedido no WhatsApp</a>
+
+<script>
+let items = [];
+
+function addItem(name) {
+  items.push(name);
+  render();
+}
+
+function render() {
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+  items.forEach(i => {
+    const li = document.createElement("li");
+    li.textContent = i;
+    list.appendChild(li);
+  });
+
+  const text = encodeURIComponent(
+    "Olá! Gostaria de fazer o pedido:\n\n" + items.join("\n")
+  );
+
+  document.getElementById("whatsapp").href =
+    "https://wa.me/554491123943?text=" + text;
+}
+</script>
+
+</body>
+</html>
